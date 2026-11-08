@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/vehicles/resources/addon_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Tanque Combustible Auxiliar"
+tipo = 4
+descripcion = "+150L combustible extra"
+peso = 150.0
+precio = 1000
+slot_requerido = "frame"
+fuel_extra = 150.0

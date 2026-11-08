@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://tienda_ui_scene"]
+
+[ext_resource type="Script" path="res://gameplay/ui/tienda_ui.gd" id="1_script"]
+
+[node name="TiendaUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="PanelFondo" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.85)
+
+[node name="Margen" type="MarginContainer" parent="PanelFondo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelFondo/Margen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Titulo" type="Label" parent="PanelFondo/Margen/VBoxContainer"]
+layout_mode = 2
+text = "TIENDA DE VEHÍCULOS"
+horizontal_alignment = 1
+add_theme_font_size_override("font_size", 20)
+
+[node name="DineroLabel" type="Label" parent="PanelFondo/Margen/VBoxContainer"]
+layout_mode = 2
+text = "Dinero: $0"
+horizontal_alignment = 1
+add_theme_font_size_override("font_size", 14)
+
+[node name="HSeparator" type="HSeparator" parent="PanelFondo/Margen/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelFondo/Margen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListaVehiculos" type="VBoxContainer" parent="PanelFondo/Margen/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BtnCerrar" type="Button" parent="PanelFondo/Margen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Cerrar"

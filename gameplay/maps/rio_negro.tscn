@@ -1,0 +1,468 @@
+[gd_scene format=3 uid="uid://b3dewljmu56a8"]
+
+[ext_resource type="Script" uid="uid://cwdicyg56atqw" path="res://gameplay/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://4cb7r1pyhtd2" path="res://gameplay/world/gas_station_v1.gd" id="2_gas"]
+[ext_resource type="Script" uid="uid://cy5lh0s1a184s" path="res://gameplay/world/garage_entrance.gd" id="3_mapchange"]
+[ext_resource type="Script" uid="uid://blc5teyj41dpj" path="res://gameplay/world/construction_animation.gd" id="4_tzone"]
+[ext_resource type="Script" uid="uid://cp3ephptceqf5" path="res://gameplay/cargo/contract_board.gd" id="5_board"]
+[ext_resource type="Script" uid="uid://dpakxifp6sejm" path="res://gameplay/cargo/contract_marker.gd" id="6_marker"]
+[ext_resource type="Script" uid="uid://bxi8fbkx7va2n" path="res://gameplay/world/gateway.gd" id="7_gateway"]
+[ext_resource type="Script" uid="uid://82x0ftwln2c6" path="res://gameplay/world/watchtower.gd" id="8_wt"]
+[ext_resource type="Script" uid="uid://c3ux78t7oxufp" path="res://gameplay/cargo/cargo_loading_zone.gd" id="9_cargo_zone"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_horizon_color = Color(0.7, 0.75, 0.8, 1)
+ground_horizon_color = Color(0.6, 0.55, 0.5, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="ground_mesh"]
+size = Vector2(200, 200)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="BoxShape3D" id="ground_shape"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="StandardMaterial3D" id="road_mat"]
+albedo_color = Color(0.25, 0.25, 0.28, 1)
+
+[sub_resource type="PlaneMesh" id="road_mesh"]
+material = SubResource("road_mat")
+
+[sub_resource type="BoxShape3D" id="road_shape"]
+size = Vector3(6, 0.1, 40)
+
+[sub_resource type="StandardMaterial3D" id="building_mat"]
+albedo_color = Color(0.5, 0.4, 0.3, 1)
+
+[sub_resource type="BoxMesh" id="building_mesh"]
+size = Vector3(8, 4, 6)
+
+[sub_resource type="BoxShape3D" id="billboard_shape"]
+size = Vector3(4, 3, 4)
+
+[sub_resource type="StandardMaterial3D" id="signpost_mat"]
+albedo_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="CylinderMesh" id="signpost_mesh"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukv7k"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxMesh" id="marker_mesh"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="CylinderShape3D" id="WheelShape"]
+height = 0.2479248
+
+[sub_resource type="CylinderMesh" id="WheelMesh"]
+
+[sub_resource type="StandardMaterial3D" id="TrailerMat"]
+albedo_color = Color(0.3, 0.3, 0.35, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="ChassisMeshVisual"]
+material = SubResource("TrailerMat")
+
+[sub_resource type="BoxShape3D" id="ChassisShape"]
+size = Vector3(1.8, 0.8, 4)
+
+[sub_resource type="BoxShape3D" id="CargoZoneShape"]
+size = Vector3(1.8, 1, 4)
+
+[node name="RioNegro" type="Node" unique_id=2039181139]
+script = ExtResource("1_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=723629353]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=437661049]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 30, 0)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Suelo" type="StaticBody3D" parent="." unique_id=104634959]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Suelo" unique_id=1936418693]
+mesh = SubResource("ground_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Suelo" unique_id=340664737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("ground_shape")
+
+[node name="PuntoAparicion" type="Marker3D" parent="." unique_id=983507307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CarreteraPrincipal" type="StaticBody3D" parent="." unique_id=523975023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CarreteraPrincipal" unique_id=207559902]
+mesh = SubResource("road_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CarreteraPrincipal" unique_id=1089001399]
+shape = SubResource("road_shape")
+
+[node name="GarageEdificio" type="StaticBody3D" parent="." unique_id=1857561753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GarageEdificio" unique_id=1955622255]
+material_override = SubResource("building_mat")
+mesh = SubResource("building_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GarageEdificio" unique_id=1523767564]
+shape = SubResource("road_shape")
+
+[node name="Gasolinera" type="Area3D" parent="." unique_id=1288507562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 5)
+script = ExtResource("2_gas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gasolinera" unique_id=970920390]
+shape = SubResource("billboard_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Gasolinera" unique_id=2123822393]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+material_override = SubResource("signpost_mat")
+mesh = SubResource("signpost_mesh")
+
+[node name="TablaContratos" type="Area3D" parent="." unique_id=1220271525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+script = ExtResource("5_board")
+contratos_ids = Array[String](["rn_01", "rn_02", "rn_03", "rn_04"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TablaContratos" unique_id=1713002589]
+shape = SubResource("billboard_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TablaContratos" unique_id=607911365]
+material_override = SubResource("road_mat")
+mesh = SubResource("building_mesh")
+
+[node name="PuntoCarga01" type="Node3D" parent="." unique_id=1971624866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1, 20)
+script = ExtResource("6_marker")
+contrato_id = "rn_01"
+
+[node name="PuntoEntrega01" type="Node3D" parent="." unique_id=1742023345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
+script = ExtResource("6_marker")
+contrato_id = "rn_01"
+usar_como_pickup = false
+
+[node name="PuntoCarga02" type="Node3D" parent="." unique_id=1249687173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 1, -20)
+script = ExtResource("6_marker")
+contrato_id = "rn_02"
+carga_nombre = "Troncos"
+
+[node name="PuntoEntrega02" type="Node3D" parent="." unique_id=792293147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 30)
+script = ExtResource("6_marker")
+contrato_id = "rn_02"
+carga_nombre = "Troncos"
+usar_como_pickup = false
+
+[node name="PuntoCarga03" type="Node3D" parent="." unique_id=878865397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, -40)
+script = ExtResource("6_marker")
+contrato_id = "rn_03"
+carga_nombre = "Combustible"
+
+[node name="PuntoEntrega03" type="Node3D" parent="." unique_id=448073693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -35)
+script = ExtResource("6_marker")
+contrato_id = "rn_03"
+carga_nombre = "Combustible"
+usar_como_pickup = false
+
+[node name="PuntoCarga04" type="Node3D" parent="." unique_id=1787175918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, 40)
+script = ExtResource("6_marker")
+contrato_id = "rn_04"
+carga_nombre = "Repuestos"
+
+[node name="PuntoEntrega04" type="Node3D" parent="." unique_id=1501427777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, -25)
+script = ExtResource("6_marker")
+contrato_id = "rn_04"
+carga_nombre = "Repuestos"
+usar_como_pickup = false
+
+[node name="TerrainZones" type="Node" parent="." unique_id=486357503]
+
+[node name="BarroLigero" type="Area3D" parent="TerrainZones" unique_id=395295944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
+script = ExtResource("4_tzone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TerrainZones/BarroLigero" unique_id=1289421330]
+shape = SubResource("billboard_shape")
+
+[node name="BarroEstandar" type="Area3D" parent="TerrainZones" unique_id=1968919679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 15)
+script = ExtResource("4_tzone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TerrainZones/BarroEstandar" unique_id=1239200888]
+shape = SubResource("billboard_shape")
+
+[node name="BarroProfundo" type="Area3D" parent="TerrainZones" unique_id=1863437253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -15)
+script = ExtResource("4_tzone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TerrainZones/BarroProfundo" unique_id=836113887]
+shape = SubResource("billboard_shape")
+
+[node name="BarroExtremo" type="Area3D" parent="TerrainZones" unique_id=380840845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0, -30)
+script = ExtResource("4_tzone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TerrainZones/BarroExtremo" unique_id=251051129]
+shape = SubResource("billboard_shape")
+
+[node name="EntradaGaraje" type="Area3D" parent="." unique_id=1689911326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -5)
+script = ExtResource("3_mapchange")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntradaGaraje" unique_id=1817415115]
+shape = SubResource("billboard_shape")
+
+[node name="GatewayAlaska" type="Area3D" parent="." unique_id=430365141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 1, 50)
+script = ExtResource("7_gateway")
+mapa_destino = "res://gameplay/maps/alaska.tscn"
+nombre_gateway = "Río Negro → Alaska"
+region = "Michigan"
+requiere_dinero = 100
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GatewayAlaska" unique_id=312440389]
+shape = SubResource("billboard_shape")
+
+[node name="Torre01" type="Area3D" parent="." unique_id=1413287241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 30)
+script = ExtResource("8_wt")
+torre_id = "rn_torre_01"
+radio_revelado = 400.0
+
+[node name="Torre02" type="Area3D" parent="." unique_id=1761236616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -40)
+script = ExtResource("8_wt")
+torre_id = "rn_torre_02"
+radio_revelado = 400.0
+
+[node name="Torre03" type="Area3D" parent="." unique_id=1844876271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55, 0, -30)
+script = ExtResource("8_wt")
+torre_id = "rn_torre_03"
+recompensa = 75
+
+[node name="TrailerSpawnPoint" type="Area3D" parent="." unique_id=1933418536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 10)
+script = ExtResource("9_cargo_zone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrailerSpawnPoint" unique_id=10421574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ukv7k")
+
+[node name="ZonaCargaPrincipal#CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1931896513]
+shape = SubResource("billboard_shape")
+
+[node name="ZonaCargaPrincipal#MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1223052897]
+mesh = SubResource("marker_mesh")
+
+[node name="RemolqueBasicoRN" type="VehicleBody3D" parent="." unique_id=406405300 groups=["remolques"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, 15)
+mass = 1500.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.5, 0)
+
+[node name="TWheel1" type="VehicleWheel3D" parent="RemolqueBasicoRN" unique_id=1226057419]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, 0.6, -0.4, -1.5)
+wheel_roll_influence = 0.4
+wheel_radius = 0.35
+wheel_friction_slip = 1.0
+suspension_stiffness = 25.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueBasicoRN/TWheel1" unique_id=309727581]
+transform = Transform3D(-8.742278e-08, -0.22, 0, 2, -9.616506e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueBasicoRN/TWheel1" unique_id=556017025]
+mesh = SubResource("WheelMesh")
+
+[node name="TWheel2" type="VehicleWheel3D" parent="RemolqueBasicoRN" unique_id=431997621]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, 0.6, -0.4, -0.5)
+wheel_roll_influence = 0.4
+wheel_radius = 0.35
+wheel_friction_slip = 1.0
+suspension_stiffness = 25.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueBasicoRN/TWheel2" unique_id=570629127]
+transform = Transform3D(-8.742278e-08, -0.22, 0, 2, -9.616506e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueBasicoRN/TWheel2" unique_id=1814496130]
+mesh = SubResource("WheelMesh")
+
+[node name="TWheel3" type="VehicleWheel3D" parent="RemolqueBasicoRN" unique_id=1344505333]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, -0.6, -0.4, -1.5)
+wheel_roll_influence = 0.4
+wheel_radius = 0.35
+wheel_friction_slip = 1.0
+suspension_stiffness = 25.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueBasicoRN/TWheel3" unique_id=326621693]
+transform = Transform3D(-8.742278e-08, -0.22, 0, 2, -9.616506e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueBasicoRN/TWheel3" unique_id=184072774]
+mesh = SubResource("WheelMesh")
+
+[node name="TWheel4" type="VehicleWheel3D" parent="RemolqueBasicoRN" unique_id=579209241]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, -0.6, -0.4, -0.5)
+wheel_roll_influence = 0.4
+wheel_radius = 0.35
+wheel_friction_slip = 1.0
+suspension_stiffness = 20.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueBasicoRN/TWheel4" unique_id=763750089]
+transform = Transform3D(-8.742278e-08, -0.2, 0, 2, -8.742278e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueBasicoRN/TWheel4" unique_id=2071530759]
+mesh = SubResource("WheelMesh")
+
+[node name="Chasis" type="MeshInstance3D" parent="RemolqueBasicoRN" unique_id=603243695]
+mesh = SubResource("ChassisMeshVisual")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueBasicoRN" unique_id=1505384740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("ChassisShape")
+
+[node name="PuntoAcopleRemolque" type="Marker3D" parent="RemolqueBasicoRN" unique_id=66769324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+
+[node name="BlobShadow" type="Decal" parent="RemolqueBasicoRN" unique_id=1363301996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, -1.05)
+size = Vector3(1.6, 4, 4.2)
+cull_mask = 1048573
+
+[node name="RemolqueCargaRN" type="VehicleBody3D" parent="." unique_id=1810521818 groups=["remolques"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 15)
+mass = 2000.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.5, 0)
+
+[node name="TWheel1" type="VehicleWheel3D" parent="RemolqueCargaRN" unique_id=1332317745]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, 0.7, -0.4, -1.8)
+wheel_roll_influence = 0.4
+wheel_radius = 0.4
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueCargaRN/TWheel1" unique_id=1081886841]
+transform = Transform3D(-8.742278e-08, -0.22, 0, 2, -9.616506e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueCargaRN/TWheel1" unique_id=155722108]
+mesh = SubResource("WheelMesh")
+
+[node name="TWheel2" type="VehicleWheel3D" parent="RemolqueCargaRN" unique_id=629646563]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, 0.7, -0.4, -0.7)
+wheel_roll_influence = 0.4
+wheel_radius = 0.4
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueCargaRN/TWheel2" unique_id=413732465]
+transform = Transform3D(-8.742278e-08, -0.22, 0, 2, -9.616506e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueCargaRN/TWheel2" unique_id=1470302111]
+mesh = SubResource("WheelMesh")
+
+[node name="TWheel3" type="VehicleWheel3D" parent="RemolqueCargaRN" unique_id=1655212231]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, -0.7, -0.4, -1.8)
+wheel_roll_influence = 0.4
+wheel_radius = 0.4
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueCargaRN/TWheel3" unique_id=1799441795]
+transform = Transform3D(-8.742278e-08, -0.22, 0, 2, -9.616506e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueCargaRN/TWheel3" unique_id=1970859759]
+mesh = SubResource("WheelMesh")
+
+[node name="TWheel4" type="VehicleWheel3D" parent="RemolqueCargaRN" unique_id=38326471]
+transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 0, 1, -0.7, -0.4, -0.7)
+wheel_roll_influence = 0.4
+wheel_radius = 0.4
+wheel_friction_slip = 1.0
+suspension_stiffness = 25.0
+damping_compression = 0.88
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueCargaRN/TWheel4" unique_id=840613155]
+transform = Transform3D(-8.742278e-08, -0.2, 0, 2, -8.742278e-09, 0, 0, 0, 2, 0, 0.035705566, 0)
+shape = SubResource("WheelShape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RemolqueCargaRN/TWheel4" unique_id=2046042744]
+mesh = SubResource("WheelMesh")
+
+[node name="Chasis" type="MeshInstance3D" parent="RemolqueCargaRN" unique_id=308678922]
+mesh = SubResource("ChassisMeshVisual")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueCargaRN" unique_id=263340257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("ChassisShape")
+
+[node name="PuntoAcopleRemolque" type="Marker3D" parent="RemolqueCargaRN" unique_id=993884487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.5)
+
+[node name="ZonaDeCarga" type="Area3D" parent="RemolqueCargaRN" unique_id=715608756]
+script = ExtResource("9_cargo_zone")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RemolqueCargaRN/ZonaDeCarga" unique_id=20881485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CargoZoneShape")
+
+[node name="Slots" type="Node3D" parent="RemolqueCargaRN/ZonaDeCarga" unique_id=645294336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Slot1" type="Marker3D" parent="RemolqueCargaRN/ZonaDeCarga/Slots" unique_id=940740537]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.6, 1)
+
+[node name="Slot2" type="Marker3D" parent="RemolqueCargaRN/ZonaDeCarga/Slots" unique_id=1662815138]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.6, 1)
+
+[node name="Slot3" type="Marker3D" parent="RemolqueCargaRN/ZonaDeCarga/Slots" unique_id=329642714]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.6, -0.5)
+
+[node name="Slot4" type="Marker3D" parent="RemolqueCargaRN/ZonaDeCarga/Slots" unique_id=217314585]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.6, -0.5)
+
+[node name="PuntoAcopleRemolque2" type="Marker3D" parent="RemolqueCargaRN" unique_id=57343469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.5)
+
+[node name="BlobShadow" type="Decal" parent="RemolqueCargaRN" unique_id=2145270950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, -1.05)
+size = Vector3(2, 5, 5)
+cull_mask = 1048573

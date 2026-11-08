@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/vehicles/resources/trailer_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Remolque de Carga Larga"
+tipo = 2
+descripcion = "Remolque largo con 12 slots para troncos y carga voluminosa"
+precio = 3000
+masa = 3000.0
+capacidad_carga = 5000.0
+slots_carga = 12
+requiere_saddle = true
+ruta_escena = "res://gameplay/vehicles/trailers/trailer_carga_largue.tscn"
+center_of_mass = Vector3(0, 0.5, 0)

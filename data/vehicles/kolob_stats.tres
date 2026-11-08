@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="VehicleStats" format=3 uid="uid://d2hkovw1c6lya"]
+
+[ext_resource type="Script" uid="uid://k7vl5tm1ihj2" path="res://gameplay/vehicles/resources/vehicle_stats.gd" id="1_stats"]
+
+[sub_resource type="Curve" id="Curve_kolob"]
+_data = [Vector2(0, 0.25), 0.0, 0.0, 0, 0, Vector2(0.15, 0.95), 3.0, 0.0, 0, 0, Vector2(0.35, 1), 0.0, 0.0, 0, 0, Vector2(0.65, 0.85), 0.0, 0.0, 0, 0, Vector2(1, 0.4), -0.8, 0.0, 0, 0]
+point_count = 5
+
+[resource]
+script = ExtResource("1_stats")
+nombre = "KOLOB 74941"
+masa = 26500.0
+combustible_max = 340.0
+consumo_base = 1.4
+max_torque = 2050.0
+max_rpm = 2600.0
+curva_torque = SubResource("Curve_kolob")
+ratios = PackedFloat32Array(6, 3.6, 2.4, 1.6, 1.05)
+ratio_reversa = 4.5
+ratio_diferencial = 5.2
+steering_max = 0.38
+steering_speed = 1.0
+tire_size = 50.0
+ground_clearance = 0.65
+friction_slip_base = 3.0
+friction_slip_diff = 4.0

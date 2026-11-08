@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/cargo/cargo_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Troncos"
+tipo = 1
+peso = 1200.0
+valor_venta = 250
+slots_ocupados = 3

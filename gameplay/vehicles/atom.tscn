@@ -1,0 +1,221 @@
+[gd_scene format=3 uid="uid://tom01scene"]
+
+[ext_resource type="Script" uid="uid://bkkis53vqxipq" path="res://gameplay/vehicles/camioneta.gd" id="1_anjhd"]
+[ext_resource type="Script" uid="uid://cgfvxv3t4trbr" path="res://legacy/controllers/spring_arm_3d.gd" id="2_daqss"]
+[ext_resource type="Script" uid="uid://58ogetcrcafn" path="res://legacy/vehicle_hud/canvas_layer.gd" id="3_c43w1"]
+[ext_resource type="Resource" uid="uid://coihl1f36pvpj" path="res://data/vehicles/atom_stats.tres" id="4_stats"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_26rbd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_obwoh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k6b5c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_atooj"]
+size = Vector3(1.5, 0.8, 9.2)
+
+[node name="Atom" type="VehicleBody3D" unique_id=1520190757 groups=["jugador"]]
+mass = 15528.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.6, 0)
+script = ExtResource("1_anjhd")
+stats = ExtResource("4_stats")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="." unique_id=2100219417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.6, 3.6)
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 60.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D" unique_id=1976194862]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="." unique_id=470503734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.6, 3.6)
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 60.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D2" unique_id=2033783299]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="." unique_id=1064329663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.6, 2.2)
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 60.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D3" unique_id=1241476514]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="." unique_id=383030142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.6, 2.2)
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 60.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D4" unique_id=780352040]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="Trasera" type="VehicleWheel3D" parent="." unique_id=929939376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.6, -3.6)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 35.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera" unique_id=1528472293]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="Trasera2" type="VehicleWheel3D" parent="." unique_id=846253120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.6, -3.6)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 35.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera2" unique_id=939281140]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="Trasera3" type="VehicleWheel3D" parent="." unique_id=1972926652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.6, -2.2)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 35.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera3" unique_id=1348770854]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="Trasera4" type="VehicleWheel3D" parent="." unique_id=2146799401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.6, -2.2)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.55
+wheel_friction_slip = 1.0
+suspension_stiffness = 35.0
+suspension_max_force = 21000.0
+damping_compression = 60.0
+damping_relaxation = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera4" unique_id=1318305919]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_26rbd")
+
+[node name="Cuerpocavina" type="MeshInstance3D" parent="." unique_id=324397899]
+transform = Transform3D(1.52, 0, 0, 0, 2.6999998, 0, 0, 0, 2, 0, 1.8, 3.6)
+mesh = SubResource("BoxMesh_obwoh")
+skeleton = NodePath("../CuerpoCamioneta")
+
+[node name="CuerpoCamioneta" type="MeshInstance3D" parent="." unique_id=1054550556]
+transform = Transform3D(1.6, 0, 0, 0, 0.77760005, 0, 0, 0, 9.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_k6b5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=667513930]
+shape = SubResource("BoxShape3D_atooj")
+
+[node name="QuintaRueda" type="Marker3D" parent="." unique_id=598480155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2.6)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1602990819]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 0)
+script = ExtResource("2_daqss")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=103476326]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1695531979 groups=["hud"]]
+script = ExtResource("3_c43w1")
+
+[node name="PanelInstrumentos" type="Control" parent="HUD" unique_id=1013369219]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 976.0
+offset_top = 512.0
+offset_right = 1016.0
+offset_bottom = 552.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Velocimetro" type="Label" parent="HUD/PanelInstrumentos" unique_id=736964379]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarchaLabel" type="Label" parent="HUD/PanelInstrumentos" unique_id=1332720731]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 45.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Indicador4x4" type="Label" parent="HUD/PanelInstrumentos" unique_id=1650831250]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 45.0
+offset_right = 38.0
+offset_bottom = 68.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CombustibleBar" type="ProgressBar" parent="HUD/PanelInstrumentos" unique_id=1408123658]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -50.0
+offset_right = 16.0
+offset_bottom = -23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RPMProgress" type="ProgressBar" parent="HUD/PanelInstrumentos" unique_id=290163246]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = 24.0
+offset_bottom = -23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="IconoDiff" type="Label" parent="HUD/PanelInstrumentos" unique_id=856576345]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 50.0
+offset_bottom = 90.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarkerFrontal" type="Marker3D" parent="." unique_id=1077727537]

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="VehicleStats" format=3 uid="uid://coihl1f36pvpj"]
+
+[ext_resource type="Script" uid="uid://k7vl5tm1ihj2" path="res://gameplay/vehicles/resources/vehicle_stats.gd" id="1_stats"]
+
+[sub_resource type="Curve" id="Curve_atom"]
+_data = [Vector2(0, 0.25), 0.0, 0.0, 0, 0, Vector2(0.15, 0.95), 3.0, 0.0, 0, 0, Vector2(0.4, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0.35), -1.0, 0.0, 0, 0]
+point_count = 5
+
+[resource]
+script = ExtResource("1_stats")
+nombre = "Azov 67096 Atom"
+masa = 15528.0
+combustible_max = 350.0
+consumo_base = 1.2
+diff_mode = 2
+max_torque = 1500.0
+max_rpm = 2800.0
+curva_torque = SubResource("Curve_atom")
+ratios = PackedFloat32Array(5.5, 3.2, 2.1, 1.4, 0.9)
+ratio_reversa = 4.0
+ratio_diferencial = 4.5
+steering_max = 0.45
+steering_speed = 1.5
+tire_size = 50.0
+ground_clearance = 0.5
+friction_slip_base = 2.5
+friction_slip_diff = 4.5

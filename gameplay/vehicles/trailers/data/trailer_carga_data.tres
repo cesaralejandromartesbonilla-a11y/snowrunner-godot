@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/vehicles/resources/trailer_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Remolque de Carga"
+tipo = 1
+descripcion = "Remolque con 4 slots para carga estándar"
+precio = 1500
+masa = 2000.0
+capacidad_carga = 2000.0
+slots_carga = 4
+requiere_saddle = true
+ruta_escena = "res://gameplay/vehicles/trailers/trailer_carga.tscn"
+center_of_mass = Vector3(0, 0.5, 0)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/vehicles/resources/addon_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Grua de Carga"
+tipo = 3
+descripcion = "Autocarga de troncos y contenedores"
+peso = 500.0
+precio = 3000
+slot_requerido = "frame"
+permite_autocarga = true

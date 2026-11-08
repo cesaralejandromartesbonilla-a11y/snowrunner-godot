@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Admision" format=3 uid="uid://dqo4eckbfhgte"]
+
+[ext_resource type="Script" uid="uid://dhk76bclfssag" path="res://vehicles/vehiculos_MK2/admision.gd" id="1_gsq5m"]
+
+[resource]
+script = ExtResource("1_gsq5m")

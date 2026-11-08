@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://fleetstar01"]
+
+[ext_resource type="Script" uid="uid://bkkis53vqxipq" path="res://gameplay/vehicles/camioneta.gd" id="1_anjhd"]
+[ext_resource type="Script" uid="uid://cgfvxv3t4trbr" path="res://legacy/controllers/spring_arm_3d.gd" id="2_daqss"]
+[ext_resource type="Script" uid="uid://58ogetcrcafn" path="res://legacy/vehicle_hud/canvas_layer.gd" id="3_c43w1"]
+[ext_resource type="Resource" uid="uid://dhhc6stgvp8ud" path="res://data/vehicles/fleetstar_stats.tres" id="4_stats"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1myyf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k6b5c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1myyf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_anffs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_atooj"]
+size = Vector3(1.2, 0.4, 6.6)
+
+[node name="Fleetstar" type="VehicleBody3D" unique_id=1313462568 groups=["jugador"]]
+mass = 6300.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.5, 0)
+script = ExtResource("1_anjhd")
+stats = ExtResource("4_stats")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="." unique_id=1071612944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.5, 2.3)
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.45
+wheel_friction_slip = 1.0
+suspension_stiffness = 50.0
+suspension_max_force = 14500.0
+damping_compression = 0.88
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D" unique_id=1245151040]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1myyf")
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="." unique_id=1110869660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, -0.5, 2.3)
+use_as_steering = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.45
+wheel_friction_slip = 1.0
+suspension_stiffness = 50.0
+suspension_max_force = 14500.0
+damping_compression = 0.88
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D2" unique_id=1710216031]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1myyf")
+
+[node name="Trasera" type="VehicleWheel3D" parent="." unique_id=174165292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.5, -2.3)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.45
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+suspension_max_force = 10000.0
+damping_compression = 0.88
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera" unique_id=327603150]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1myyf")
+
+[node name="Trasera2" type="VehicleWheel3D" parent="." unique_id=213089538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, -0.5, -2.3)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.45
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+suspension_max_force = 10000.0
+damping_compression = 0.88
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera2" unique_id=1558349481]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1myyf")
+
+[node name="Trasera3" type="VehicleWheel3D" parent="." unique_id=380797007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.5, -0.79999995)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.45
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+suspension_max_force = 10000.0
+damping_compression = 0.88
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera3" unique_id=1973819684]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1myyf")
+
+[node name="Trasera4" type="VehicleWheel3D" parent="." unique_id=178701974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, -0.5, -0.79999995)
+use_as_traction = true
+wheel_roll_influence = 0.4
+wheel_radius = 0.45
+wheel_friction_slip = 1.0
+suspension_stiffness = 28.0
+suspension_max_force = 10000.0
+damping_compression = 0.88
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trasera4" unique_id=144390852]
+transform = Transform3D(-5.2453668e-08, -0.2, 0, 1.2, -8.742278e-09, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("CylinderMesh_1myyf")
+
+[node name="CuerpoCamioneta" type="MeshInstance3D" parent="." unique_id=2027972383]
+transform = Transform3D(1.2, 0, 0, 0, 0.48999998, 0, 0, 0, 6.6000004, 0, -0.12744081, 0)
+mesh = SubResource("BoxMesh_k6b5c")
+
+[node name="CuerpoCavina" type="MeshInstance3D" parent="." unique_id=1791011223]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 0.97999996, 0, 0.8725592, 1.3000001)
+mesh = SubResource("BoxMesh_1myyf")
+
+[node name="Cuerpocapo" type="MeshInstance3D" parent="." unique_id=1998331807]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 1.6, 0, 0.5725592, 2.4)
+mesh = SubResource("BoxMesh_anffs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=807096023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10000004, 2.3841858e-07)
+shape = SubResource("BoxShape3D_atooj")
+
+[node name="QuintaRueda" type="Marker3D" parent="." unique_id=871421767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.8)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=105846810]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2, 0)
+script = ExtResource("2_daqss")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=78944714]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1427812869 groups=["hud"]]
+script = ExtResource("3_c43w1")
+
+[node name="PanelInstrumentos" type="Control" parent="HUD" unique_id=1523269346]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 976.0
+offset_top = 512.0
+offset_right = 1016.0
+offset_bottom = 552.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Velocimetro" type="Label" parent="HUD/PanelInstrumentos" unique_id=1062716723]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarchaLabel" type="Label" parent="HUD/PanelInstrumentos" unique_id=1757755489]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 45.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Indicador4x4" type="Label" parent="HUD/PanelInstrumentos" unique_id=339405353]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 45.0
+offset_right = 38.0
+offset_bottom = 68.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CombustibleBar" type="ProgressBar" parent="HUD/PanelInstrumentos" unique_id=779206780]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -50.0
+offset_right = 16.0
+offset_bottom = -23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RPMProgress" type="ProgressBar" parent="HUD/PanelInstrumentos" unique_id=1837658575]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = 24.0
+offset_bottom = -23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="IconoDiff" type="Label" parent="HUD/PanelInstrumentos" unique_id=1186414517]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 50.0
+offset_bottom = 90.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarkerFrontal" type="Marker3D" parent="." unique_id=1718155375]

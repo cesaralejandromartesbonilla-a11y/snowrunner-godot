@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="VehicleStats" format=3 uid="uid://dhhc6stgvp8ud"]
+
+[ext_resource type="Script" uid="uid://k7vl5tm1ihj2" path="res://gameplay/vehicles/resources/vehicle_stats.gd" id="1_stats"]
+
+[sub_resource type="Curve" id="Curve_fleetstar"]
+_data = [Vector2(0, 0.2), 0.0, 0.0, 0, 0, Vector2(0.2, 0.9), 1.5, 0.0, 0, 0, Vector2(0.45, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75), 0.0, 0.0, 0, 0, Vector2(1, 0.3), -1.2, 0.0, 0, 0]
+point_count = 5
+
+[resource]
+script = ExtResource("1_stats")
+nombre = "Fleetstar F2070A"
+masa = 6300.0
+combustible_max = 240.0
+consumo_base = 0.6
+max_torque = 700.0
+max_rpm = 3500.0
+curva_torque = SubResource("Curve_fleetstar")
+ratios = PackedFloat32Array(4.8, 2.8, 1.8, 1.2, 0.8)
+ratio_diferencial = 4.1
+steering_max = 0.55
+steering_speed = 2.0

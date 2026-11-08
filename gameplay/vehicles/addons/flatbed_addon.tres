@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/vehicles/resources/addon_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Cama Plana (Flatbed)"
+tipo = 1
+descripcion = "4 slots para carga general"
+peso = 200.0
+precio = 1200
+slot_requerido = "frame"
+capacidad_carga_extra = 2000.0

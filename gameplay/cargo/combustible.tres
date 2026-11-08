@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://gameplay/cargo/cargo_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+nombre = "Combustible"
+tipo = 3
+peso = 800.0
+valor_venta = 150
+slots_ocupados = 2

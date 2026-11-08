@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="VehicleStats" format=3 uid="uid://ccorv50vuft5n"]
+
+[ext_resource type="Script" uid="uid://k7vl5tm1ihj2" path="res://gameplay/vehicles/resources/vehicle_stats.gd" id="1_stats"]
+
+[sub_resource type="Curve" id="Curve_p16"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(0.15, 1), 3.0, 0.0, 0, 0, Vector2(0.4, 0.98), 0.0, 0.0, 0, 0, Vector2(0.7, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0.4), -0.8, 0.0, 0, 0]
+point_count = 5
+
+[resource]
+script = ExtResource("1_stats")
+nombre = "Pacific P16"
+masa = 25000.0
+combustible_max = 300.0
+consumo_base = 1.5
+awd_mode = 0
+diff_mode = 2
+max_torque = 1800.0
+max_rpm = 2500.0
+curva_torque = SubResource("Curve_p16")
+ratios = PackedFloat32Array(5.8, 3.5, 2.3, 1.5, 1)
+ratio_reversa = 4.2
+ratio_diferencial = 5.0
+steering_max = 0.4
+steering_speed = 1.2
+tire_size = 57.0
+ground_clearance = 0.6
+friction_slip_base = 3.0
+friction_slip_diff = 4.0
